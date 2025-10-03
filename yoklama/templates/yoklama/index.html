@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova Katılımı - RZNS Koro</title>
+    <link rel="stylesheet" href="{% static 'yoklama/css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎵 Prova Katılımı</h1>
+            <p>Lütfen bugünkü prova için katılımınızı kaydedin</p>
+        </div>
+
+        <div id="message" class="message"></div>
+        <div id="loading" class="loading">Katılımınız kaydediliyor...</div>
+
+        <form id="rollCallForm">
+            <div class="form-group">
+                <label for="student">İsminizi Seçin:</label>
+                <select id="student" name="student" required>
+                    <option value="">-- İsminizi seçin --</option>
+                    {% for student in students %}
+                        <option value="{{ student.id }}">{{ student.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="selfConfirmation" name="selfConfirmation" required>
+                <label for="selfConfirmation">
+                    <span class="warning-text">YALNIZCA KENDİM İÇİN</span> prova katılımı kaydettiğimi onaylıyorum.
+                    Başka bir koro üyesi için katılım kaydetmek yasaktır.
+                </label>
+            </div>
+
+            <button type="submit" class="btn" id="submitBtn">
+                Katılımı Kaydet
+            </button>
+        </form>
+    </div>
+
+    <script src="{% static 'yoklama/js/main.js' %}"></script>
+</body>
+</html>
